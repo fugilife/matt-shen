@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Matt Shen · Taiwan Police Attaché</title>
+
+<!-- PWA Meta Tags -->
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Matt Shen">
+<meta name="theme-color" content="#1a2744">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<!-- OG -->
+<meta property="og:title" content="Matt Shen · Taiwan Police Attaché">
+<meta property="og:description" content="Upholding Law · Building Bridges">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://matt-shen.vercel.app">
+
+<style>
+:root {
+  --navy:    #1a2744;
+  --navy2:   #0f1a30;
+  --blue:    #000095;
+  --red:     #FE0000;
+  --gold:    #c9a84c;
+  --gold2:   #e8c96a;
+  --white:   #ffffff;
+  --offwhite:#dce4f0;
+  --muted:   #8fa8cc;
+  --dim:     rgba(255,255,255,0.06);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html, body {
+  min-height: 100vh;
+  background: var(--navy2);
+  font-family: 'Georgia', 'Times New Roman', serif;
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ── CARD WRAPPER ── */
+.card {
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── FLAG STRIPE (top & bottom) ── */
+.flag-stripe {
+  width: 100%;
+  height: 5px;
+  flex-shrink: 0;
+  background: linear-gradient(90deg,
+    var(--blue)  0%   33.3%,
+    var(--white) 33.3% 66.6%,
+    var(--red)   66.6% 100%);
+}
+
+/* ── DECORATIVE BACKGROUND MARK ── */
+.card::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.07);
+  pointer-events: none;
+}
+.card::after {
+  content: '';
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.06);
+  pointer-events: none;
+}
+
+/* ── HEADER ── */
+.header {
+  padding: 32px 28px 26px;
+  position: relative;
+  z-index: 1;
+  border-bottom: 0.5px solid rgba(201,168,76,0.18);
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.brand-taiwan {
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: normal;
+}
+
+.brand-police {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: normal;
+}
+
+.flag-img {
+  width: 54px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 2px;
+  border: 0.5px solid rgba(255,255,255,0.15);
+  flex-shrink: 0;
+}
+
+.gold-rule {
+  width: 36px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.5;
+  margin: 0 0 18px 0;
+}
+
+.name {
+  font-size: 30px;
+  font-weight: normal;
+  color: var(--white);
+  letter-spacing: 0.05em;
+  margin-bottom: 5px;
+  line-height: 1.1;
+}
+
+.title {
+  font-size: 9.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: normal;
+  margin-bottom: 10px;
+}
+
+.tagline {
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  opacity: 0.8;
+  font-style: italic;
+  margin-bottom: 16px;
+}
+
+.chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  font-size: 8.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 2px;
+}
+
+.chip-roc {
+  background: rgba(0,0,149,0.22);
+  color: #7ab0e8;
+  border: 0.5px solid rgba(0,0,149,0.45);
+}
+
+.chip-ph {
+  background: rgba(254,0,0,0.1);
+  color: #e88888;
+  border: 0.5px solid rgba(254,0,0,0.28);
+}
+
+/* ── SECTIONS ── */
+.section {
+  padding: 22px 28px;
+  border-bottom: 0.5px solid rgba(255,255,255,0.06);
+}
+
+.section-label {
+  font-size: 8px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.55;
+  margin-bottom: 14px;
+}
+
+/* ── CONTACT ROWS ── */
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 9px 0;
+  border-bottom: 0.5px solid rgba(255,255,255,0.04);
+  text-decoration: none;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.15s;
+}
+
+.contact-row:last-child { border-bottom: none; }
+.contact-row:active { opacity: 0.65; }
+
+.c-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 17px;
+}
+
+.i-phone  { background: rgba(201,168,76,0.1);  border: 0.5px solid rgba(201,168,76,0.22); }
+.i-email  { background: rgba(138,180,248,0.08); border: 0.5px solid rgba(138,180,248,0.18); }
+.i-line   { background: rgba(0,185,0,0.1);      border: 0.5px solid rgba(0,185,0,0.22); }
+.i-wa     { background: rgba(37,211,102,0.1);   border: 0.5px solid rgba(37,211,102,0.22); }
+.i-viber  { background: rgba(125,82,179,0.12);  border: 0.5px solid rgba(125,82,179,0.28); }
+
+.c-text { flex: 1; min-width: 0; }
+.c-label { font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+.c-value { font-size: 13.5px; color: var(--offwhite); letter-spacing: 0.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.c-arrow { color: var(--gold); opacity: 0.4; font-size: 18px; flex-shrink: 0; }
+
+/* ── ACTION BUTTONS ── */
+.actions {
+  padding: 18px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  border-bottom: 0.5px solid rgba(255,255,255,0.06);
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 20px;
+  border-radius: 3px;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-family: 'Georgia', serif;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.15s, transform 0.1s;
+}
+
+.btn:active { opacity: 0.8; transform: scale(0.985); }
+
+.btn-gold {
+  background: var(--gold);
+  color: var(--navy2);
+  font-weight: bold;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--gold);
+  border: 0.5px solid rgba(201,168,76,0.38);
+}
+
+/* ── QR GRID ── */
+.qr-section {
+  padding: 22px 28px 26px;
+}
+
+.qr-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.qr-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+}
+
+.qr-frame {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: white;
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.5px solid rgba(255,255,255,0.08);
+}
+
+.qr-frame img, .qr-frame svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.qr-label {
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── FOOTER ── */
+.footer {
+  padding: 18px 28px 32px;
+  text-align: center;
+  margin-top: auto;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.footer-flag {
+  width: 28px;
+  height: 19px;
+  object-fit: cover;
+  border-radius: 1px;
+  opacity: 0.45;
+}
+
+.footer-text {
+  font-size: 8.5px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  opacity: 0.4;
+  text-transform: uppercase;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="flag-stripe"></div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <div class="brand">
+        <span class="brand-taiwan">Taiwan</span>
+        <span class="brand-police">Police Attaché</span>
+      </div>
+      <img class="flag-img" src="data:image/jpeg;base64,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" alt="ROC Flag">
+    </div>
+
+    <div class="gold-rule"></div>
+
+    <div class="name">Matt Shen</div>
+    <div class="title">Taiwan Police Attaché · Republic of China</div>
+    <div class="tagline">Upholding Law &middot; Building Bridges</div>
+
+    <div class="chips">
+      <span class="chip chip-roc">ROC</span>
+      <span class="chip chip-ph">Philippine</span>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="section">
+    <div class="section-label">Contact</div>
+
+    <a class="contact-row" href="tel:+639564307434">
+      <div class="c-icon i-phone">📱</div>
+      <div class="c-text">
+        <div class="c-label">Mobile</div>
+        <div class="c-value">+63 956 430 7434</div>
+      </div>
+      <span class="c-arrow">›</span>
+    </a>
+
+    <a class="contact-row" href="mailto:maxlarge9999@gmail.com">
+      <div class="c-icon i-email">✉️</div>
+      <div class="c-text">
+        <div class="c-label">Email</div>
+        <div class="c-value">maxlarge9999@gmail.com</div>
+      </div>
+      <span class="c-arrow">›</span>
+    </a>
+
+    <a class="contact-row" href="https://line.me/ti/p/~anishen">
+      <div class="c-icon i-line">💬</div>
+      <div class="c-text">
+        <div class="c-label">LINE</div>
+        <div class="c-value">anishen</div>
+      </div>
+      <span class="c-arrow">›</span>
+    </a>
+
+    <a class="contact-row" href="https://wa.me/639564307434">
+      <div class="c-icon i-wa">💬</div>
+      <div class="c-text">
+        <div class="c-label">WhatsApp</div>
+        <div class="c-value">+63 956 430 7434</div>
+      </div>
+      <span class="c-arrow">›</span>
+    </a>
+
+    <a class="contact-row" href="viber://chat?number=%2B639564307434">
+      <div class="c-icon i-viber">📲</div>
+      <div class="c-text">
+        <div class="c-label">Viber</div>
+        <div class="c-value">+63 956 430 7434</div>
+      </div>
+      <span class="c-arrow">›</span>
+    </a>
+  </div>
+
+  <!-- ACTIONS -->
+  <div class="actions">
+    <a class="btn btn-gold"
+       href="data:text/vcard;base64,QkVHSU46VkNBUkQKVkVSU0lPTjozLjAKRk46TWF0dCBTaGVuCk46U2hlbjtNYXR0Ozs7Ck9SRzpUYWl3YW4gUG9saWNlIEF0dGFjaMOpClRJVExFOlRhaXdhbiBQb2xpY2UgQXR0YWNow6kKVEVMO1RZUEU9Q0VMTDorNjM5NTY0MzA3NDM0CkVNQUlMOm1heGxhcmdlOTk5OUBnbWFpbC5jb20KVVJMOmh0dHBzOi8vbWF0dC1zaGVuLnZlcmNlbC5hcHAKRU5EOlZDQVJE"
+       download="Matt_Shen.vcf">
+      ＋&nbsp;&nbsp;Save to Contacts
+    </a>
+    <a class="btn btn-outline" href="mailto:maxlarge9999@gmail.com">
+      ✉&nbsp;&nbsp;Send Email
+    </a>
+  </div>
+
+  <!-- QR CODES -->
+  <div class="qr-section">
+    <div class="section-label">Scan to Connect</div>
+    <div class="qr-grid">
+
+      <div class="qr-item">
+        <div class="qr-frame">
+          <img src="data:image/png;base64,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" alt="LINE QR Code">
+        </div>
+        <span class="qr-label">LINE</span>
+      </div>
+
+      <div class="qr-item">
+        <div class="qr-frame">
+          <img src="data:image/png;base64,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" alt="Viber QR Code">
+        </div>
+        <span class="qr-label">Viber</span>
+      </div>
+
+      <div class="qr-item">
+        <div class="qr-frame">
+          <img src="data:image/png;base64,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" alt="WhatsApp QR Code">
+        </div>
+        <span class="qr-label">WhatsApp</span>
+      </div>
+
+      <div class="qr-item">
+        <div class="qr-frame">
+          <img src="data:image/svg+xml;base64,CjxzdmcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB3aWR0aD0nMjAwJyBoZWlnaHQ9JzIwMCcgdmlld0JveD0nMCAwIDIwMCAyMDAnPgogIDxyZWN0IHdpZHRoPScyMDAnIGhlaWdodD0nMjAwJyBmaWxsPSd3aGl0ZScvPgogIDxyZWN0IHg9JzEwJyB5PScxMCcgd2lkdGg9JzYwJyBoZWlnaHQ9JzYwJyBmaWxsPSdub25lJyBzdHJva2U9JyMxYTI3NDQnIHN0cm9rZS13aWR0aD0nOCcvPgogIDxyZWN0IHg9JzIyJyB5PScyMicgd2lkdGg9JzM2JyBoZWlnaHQ9JzM2JyBmaWxsPScjMWEyNzQ0Jy8+CiAgPHJlY3QgeD0nMTMwJyB5PScxMCcgd2lkdGg9JzYwJyBoZWlnaHQ9JzYwJyBmaWxsPSdub25lJyBzdHJva2U9JyMxYTI3NDQnIHN0cm9rZS13aWR0aD0nOCcvPgogIDxyZWN0IHg9JzE0MicgeT0nMjInIHdpZHRoPSczNicgaGVpZ2h0PSczNicgZmlsbD0nIzFhMjc0NCcvPgogIDxyZWN0IHg9JzEwJyB5PScxMzAnIHdpZHRoPSc2MCcgaGVpZ2h0PSc2MCcgZmlsbD0nbm9uZScgc3Ryb2tlPScjMWEyNzQ0JyBzdHJva2Utd2lkdGg9JzgnLz4KICA8cmVjdCB4PScyMicgeT0nMTQyJyB3aWR0aD0nMzYnIGhlaWdodD0nMzYnIGZpbGw9JyMxYTI3NDQnLz4KICA8dGV4dCB4PScxMDAnIHk9JzEwOCcgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1zaXplPScxMScgZm9udC1mYW1pbHk9J0dlb3JnaWEsc2VyaWYnIGZpbGw9JyM4ZmE4Y2MnIGxldHRlci1zcGFjaW5nPScxJz5XRUJTSVRFPC90ZXh0PgogIDx0ZXh0IHg9JzEwMCcgeT0nMTI0JyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyBmb250LXNpemU9JzknIGZvbnQtZmFtaWx5PSdHZW9yZ2lhLHNlcmlmJyBmaWxsPScjYzlhODRjJz5Db21pbmcgU29vbjwvdGV4dD4KPC9zdmc+" alt="Website QR Placeholder">
+        </div>
+        <span class="qr-label">Website</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-inner">
+      <img class="footer-flag" src="data:image/jpeg;base64,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" alt="ROC">
+      <span class="footer-text">Republic of China · Philippine Station</span>
+    </div>
+  </div>
+
+  <div class="flag-stripe"></div>
+</div>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js').catch(function() {});
+  });
+}
+</script>
+
+</body>
+</html>
